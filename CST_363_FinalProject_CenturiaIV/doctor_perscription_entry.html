@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<script>
+	function getDoctors(str) {
+		  var xhttp;    
+		  if (str == "") {
+		    document.getElementById("doctor_select").innerHTML = "";
+		    return;
+		  }
+		  xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      document.getElementById("doctor_select").innerHTML = this.responseText;
+		    }
+		  };
+		  xhttp.open("GET", "DataLookup?rt="+str, true);
+		  xhttp.send();
+		}
+	
+	function getPatients(str) {
+		  var xhttp;    
+		  if (str == "") {
+		    document.getElementById("patient_select").innerHTML = "";
+		    return;
+		  }
+		  xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      document.getElementById("patient_select").innerHTML = this.responseText;
+		    }
+		  };
+		  xhttp.open("GET", "DataLookup?rt="+str, true);
+		  xhttp.send();
+		}
+	
+	function getPharmacies(str) {
+		  var xhttp;    
+		  if (str == "") {
+		    document.getElementById("pharmacy_select").innerHTML = "";
+		    return;
+		  }
+		  xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      document.getElementById("pharmacy_select").innerHTML = this.responseText;
+		    }
+		  };
+		  xhttp.open("GET", "DataLookup?rt="+str, true);
+		  xhttp.send();
+		}
+	
+	function getDrugs(str,pram) {
+		  var xhttp;    
+		  if (str == "") {
+		    document.getElementById("drug_select").innerHTML = "";
+		    return;
+		  }
+		  xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      document.getElementById("drug_select").innerHTML = this.responseText;
+		    }
+		  };
+		  xhttp.open("GET", "DataLookup?rt="+str+"&p="+pram, true);
+		  xhttp.send();
+		}
+	
+	function getUom(str,pram) {
+		var xhttp;    
+		  if (str == "") {
+		    document.getElementById("uom_display").innerHTML = "";
+		    return;
+		  }
+		  xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      document.getElementById("uom_display").innerHTML = this.responseText;
+		    }
+		  };
+		  xhttp.open("GET", "DataLookup?rt="+str+"&p="+pram, true);
+		  xhttp.send();
+		}
+	</script>
+
+<body>
+	<h1>Doctor Prescription Entry</h1>
+	<form action="CreatePrescription" method="POST">
+		<table>
+			<tr>
+				<td>Doctor:</td>
+				<td>
+					<div id="doctor_select"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>Patient:</td>
+				<td>
+					<div id="patient_select"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>Pharmacy:</td>
+				<td>
+					<div id="pharmacy_select"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>Drug:</td>
+				<td>
+					<div id="drug_select"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>Qty:</td>
+				<td><input type="text" name="qty" /></td>
+			</tr>
+			<tr>
+				<td>UOM:</td>
+				<td>
+					<div id="uom_display"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>Refills:</td>
+				<td><input type="text" name="refills" /></td>
+			</tr>
+		</table>
+		<br /> <br /> <input type="submit" value="Submit" />
+	</form>
+</body>
+<script>
+		getDoctors("doctors");
+		getPharmacies("pharmacies");
+	</script>
+</html>
